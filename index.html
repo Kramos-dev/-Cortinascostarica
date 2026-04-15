@@ -1,271 +1,397 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Plomería Costa Rica Compañeros | Emergencias 24/7 GAM</title>
+    <meta name="description" content="Servicio de fontanería profesional en San José, Heredia, Alajuela y Cartago. Detección de fugas, destapes y reparaciones urgentes. ¡Llámenos ahora!">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<title>Plomería Costa Rica | Emergencias 24/7</title>
+    <style>
+        :root {
+            --p3005: #0077c0;
+            --p2728: #0047bb;
+            --p368: #78be20;
+            --p361: #43b02a;
+            --white: #ffffff;
+            --silver: #f5f5f7;
+            --dark: #0a0f1a;
+            --glass: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --radius: 20px;
+            --transition: .35s cubic-bezier(.22, 1, .36, 1);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        html { scroll-behavior: smooth; font-family: 'Inter', sans-serif; }
+        body { background: var(--silver); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
 
-<style>
-:root{
---p3005:#0077c0;--p2728:#0047bb;--p368:#78be20;--p361:#43b02a;
---white:#ffffff;--silver:#f5f5f7;--dark:#0a0f1a;
---glass:rgba(255,255,255,0.6);
---radius:20px;
-}
+        /* --- Reusable Components --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: clamp(14px, 4vw, 16px);
+            min-height: 52px;
+        }
+        .btn-primary { background: var(--p2728); color: white; box-shadow: 0 4px 15px rgba(0,71,187,0.3); }
+        .btn-whatsapp { background: var(--p361); color: white; }
+        .btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+        /* --- Header --- */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        nav {
+            max-width: 1200px; margin: 0 auto; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--p2728); text-transform: uppercase; letter-spacing: -0.5px; }
+        .nav-links { display: none; gap: 25px; }
+        @media (min-width: 1024px) { .nav-links { display: flex; align-items: center; } }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; transition: var(--transition); }
+        .nav-links a:hover { color: var(--p3005); }
 
-body{background:var(--white);color:#111;overflow-x:hidden;}
+        /* --- Ticker --- */
+        .ticker-wrap {
+            margin-top: 70px; background: var(--dark); color: white;
+            padding: 10px 0; overflow: hidden; white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block; animation: ticker 25s linear infinite;
+        }
+        .ticker span { padding: 0 30px; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* HEADER */
-header{
-display:flex;justify-content:space-between;align-items:center;
-padding:15px 30px;position:sticky;top:0;
-background:rgba(255,255,255,0.8);
-backdrop-filter:blur(12px);
-z-index:1000;
-}
+        /* --- Hero --- */
+        .hero {
+            padding: 80px 20px; text-align: center; background: radial-gradient(circle at top right, #eef2ff, #ffffff);
+            min-height: 85vh; display: flex; flex-direction: column; justify-content: center;
+        }
+        .hero h1 { font-size: clamp(2rem, 8vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: var(--dark); }
+        .hero .dynamic-text { color: var(--p3005); display: block; height: 1.2em; }
+        .hero p { max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem; color: #4b5563; }
+        .hero-btns { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        @media (min-width: 768px) { .hero-btns { flex-direction: row; justify-content: center; } }
+        
+        .urgency-badge {
+            background: #fee2e2; color: #dc2626; padding: 6px 16px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 700; display: inline-block; margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
 
-.logo{font-weight:700;color:var(--p2728);font-size:20px;}
+        /* --- Services Grid --- */
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; font-weight: 800; }
+        
+        .services-grid {
+            display: grid; gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .service-card {
+            background: var(--white); padding: 30px; border-radius: var(--radius);
+            transition: var(--transition); border: 1px solid rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: var(--p3005); }
+        .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .service-card .price { color: var(--p361); font-weight: 800; margin-bottom: 15px; display: block; }
+        .service-card p { font-size: 0.95rem; color: #666; margin-bottom: 20px; }
 
-nav{display:flex;gap:20px;}
-nav a{text-decoration:none;color:#333;font-weight:500;}
+        /* --- Testimonials --- */
+        .testimonials { background: var(--dark); color: white; border-radius: 40px; margin: 20px; padding: 60px 20px; }
+        .test-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .test-card { background: var(--glass); border: 1px solid var(--glass-border); padding: 30px; border-radius: var(--radius); }
+        .stars { color: var(--p368); margin-bottom: 10px; }
 
-.menu-toggle{display:none;font-size:28px;cursor:pointer;}
+        /* --- Floating Actions --- */
+        .floating-actions {
+            position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999;
+        }
+        .float-btn {
+            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.2); transition: var(--transition);
+        }
+        .f-wa { background: #25d366; }
+        .f-call { background: var(--p2728); }
 
-/* TICKER */
-.ticker{overflow:hidden;background:var(--p3005);color:white;padding:10px;}
-.ticker-track{display:flex;gap:40px;animation:scroll 25s linear infinite;}
-@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+        /* --- Chatbot Interface --- */
+        .chat-widget {
+            position: fixed; bottom: 100px; right: 20px; width: 300px; background: white;
+            border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; display: none;
+            z-index: 1000; border: 1px solid #eee;
+        }
+        .chat-header { background: var(--p2728); color: white; padding: 15px; font-weight: 700; font-size: 0.9rem; }
+        .chat-body { height: 250px; overflow-y: auto; padding: 15px; font-size: 0.85rem; }
+        .chat-input { padding: 10px; border-top: 1px solid #eee; display: flex; }
+        .chat-input input { border: none; flex: 1; padding: 5px; }
 
-/* HERO */
-.hero{
-padding:100px 20px;text-align:center;
-background:linear-gradient(180deg,#fff,#f5f7fa);
-}
+        /* --- Animations --- */
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        [data-reveal] { opacity: 0; transform: translateY(30px); transition: 1s var(--transition); }
+        [data-reveal].visible { opacity: 1; transform: translateY(0); }
 
-.hero h1{
-font-size:clamp(2rem,5vw,3.5rem);
-color:var(--p2728);
-transition:.4s;
-}
+        /* --- Form --- */
+        .contact-container { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 1024px) { .contact-container { grid-template-columns: 1fr 1fr; } }
+        form { display: grid; gap: 15px; }
+        input, textarea {
+            padding: 15px; border-radius: 12px; border: 1px solid #ddd; background: #fff;
+            width: 100%; font-family: inherit;
+        }
+        input:focus { border-color: var(--p3005); }
 
-.hero p{margin-top:15px;color:#555;font-size:18px;}
-
-.btn{
-display:inline-block;margin:15px;padding:14px 28px;
-border-radius:40px;background:var(--p3005);
-color:white;text-decoration:none;
-transition:.3s;
-}
-
-.btn:hover{transform:scale(1.05);}
-
-/* SERVICES */
-.services{padding:80px 20px;background:var(--silver);}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-transition:.4s;
-position:relative;
-overflow:hidden;
-}
-
-.card:hover{transform:translateY(-10px);}
-
-.card h3{color:var(--p2728);margin-bottom:10px;}
-
-.card button{
-margin-top:10px;padding:10px 20px;border:none;
-border-radius:20px;background:var(--p361);
-color:white;cursor:pointer;
-}
-
-/* TESTIMONIOS */
-.testimonials{padding:80px 20px;}
-.testimonial{
-background:white;padding:20px;margin-bottom:20px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,.05);
-}
-
-/* CONTACT */
-.contact{padding:80px 20px;background:var(--silver);}
-input,textarea{
-width:100%;padding:12px;margin:10px 0;
-border-radius:10px;border:1px solid #ccc;
-}
-
-button{
-background:var(--p361);color:white;
-padding:12px;border:none;border-radius:10px;
-cursor:pointer;
-}
-
-/* CHATBOT */
-.chatbot{
-position:fixed;bottom:20px;left:20px;
-background:white;border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
-width:280px;padding:15px;
-}
-
-.chatbot h4{margin-bottom:10px;}
-.chatbot p{font-size:14px;color:#444;}
-
-.chatbot input{
-margin-top:10px;
-}
-
-/* FLOAT */
-.float{
-position:fixed;bottom:20px;right:20px;
-display:flex;flex-direction:column;gap:10px;
-}
-
-.float a{
-background:var(--p368);
-color:white;padding:14px;border-radius:50%;
-text-decoration:none;
-}
-
-/* FOOTER */
-footer{
-background:var(--dark);
-color:white;padding:40px 20px;text-align:center;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-nav{display:none;flex-direction:column;background:white;position:absolute;top:60px;right:0;padding:20px;}
-.menu-toggle{display:block;}
-}
-</style>
+        footer { background: var(--dark); color: white; padding: 60px 20px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-bottom { text-align: center; padding-top: 40px; margin-top: 40px; border-top: 1px solid var(--glass-border); font-size: 0.8rem; color: var(--text-muted); }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="logo">Costa Rica Compañeros</div>
-<div class="menu-toggle" onclick="toggleMenu()">☰</div>
-<nav id="menu">
-<a href="#servicios">Servicios</a>
-<a href="#testimonios">Testimonios</a>
-<a href="#contacto">Contacto</a>
-<a href="tel:63026080">63026080</a>
-</nav>
-</header>
+    <header>
+        <nav>
+            <div class="logo">CR COMPAÑEROS</div>
+            <div class="nav-links" id="mainNav">
+                <a href="#servicios">Servicios</a>
+                <a href="#testimonios">Testimonios</a>
+                <a href="#contacto">Contacto</a>
+                <a href="tel:63026080" class="btn btn-primary" style="padding: 10px 20px;">6302-6080</a>
+            </div>
+            <div id="mobile-toggle" style="font-size: 24px; cursor: pointer; display: block; md:none">☰</div>
+        </nav>
+    </header>
 
-<div class="ticker">
-<div class="ticker-track">
-<span>⚡ Emergencias 24/7</span>
-<span>🔧 +20 Años</span>
-<span>📍 San José · Heredia · Alajuela · Cartago</span>
-<span>💧 Fugas</span>
-<span>🚿 Destapes</span>
-</div>
-</div>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span>⚡ EMERGENCIAS 24/7</span>
+            <span>💧 DETECCIÓN DE FUGAS</span>
+            <span>📍 COBERTURA TODA LA GAM</span>
+            <span>✅ +20 AÑOS DE EXPERIENCIA</span>
+            <span>🛠️ DESTAPES MECANIZADOS</span>
+            <span>🏠 +120 CLIENTES SATISFECHOS</span>
+            <span>⚡ EMERGENCIAS 24/7</span>
+            <span>💧 DETECCIÓN DE FUGAS</span>
+            <span>📍 COBERTURA TODA LA GAM</span>
+            <span>✅ +20 AÑOS DE EXPERIENCIA</span>
+            <span>🛠️ DESTAPES MECANIZADOS</span>
+            <span>🏠 +120 CLIENTES SATISFECHOS</span>
+        </div>
+    </div>
 
-<section class="hero">
-<h1 id="headline">¿Sospechas de una fuga de agua?</h1>
-<p id="desc">Solucionamos hoy mismo sin romper de más.</p>
-<a class="btn" href="#">Solicitar servicio</a>
-<a class="btn" href="https://wa.me/50663026080">WhatsApp</a>
-</section>
+    <section class="hero">
+        <div class="urgency-badge" id="urgency-msg">Atención inmediata: Solo 2 cupos disponibles para hoy</div>
+        <h1><span id="hero-headline">¿Sospechas de una fuga de agua?</span></h1>
+        <p>Expertos en soluciones hidráulicas con tecnología de punta. No deje que un problema pequeño destruya su hogar o su bolsillo.</p>
+        <div class="hero-btns">
+            <a href="tel:63026080" class="btn btn-primary" onclick="logClick('Llamada_Hero')">Solicitar servicio ahora</a>
+            <a href="https://wa.me/50663026080?text=Hola,%20necesito%20asistencia%20tecnica%20urgente" class="btn btn-whatsapp" onclick="logClick('WA_Hero')">WhatsApp Inmediato</a>
+        </div>
+    </section>
 
-<section id="servicios" class="services">
-<div class="grid">
+    <section class="section" id="servicios">
+        <div class="section-title" data-reveal>
+            <h2>Nuestros Servicios</h2>
+            <p>Especialistas con garantía por escrito en todo Costa Rica</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-reveal>
+                <h3>Detección de Fugas</h3>
+                <span class="price">Desde ₡45,000</span>
+                <p>Uso de geófono digital para localizar fugas sin romper paredes innecesariamente.</p>
+                <a href="tel:63026080" class="btn btn-primary">Cotizar</a>
+            </div>
+            <div class="service-card" data-reveal>
+                <h3>Destape de Tuberías</h3>
+                <span class="price">Garantizado</span>
+                <p>Limpieza profunda de cañerías con sondas eléctricas y presión.</p>
+                <a href="tel:63026080" class="btn btn-primary">Agendar</a>
+            </div>
+            <div class="service-card" data-reveal>
+                <h3>Calentadores de Agua</h3>
+                <span class="price">Técnicos Certificados</span>
+                <p>Instalación y reparación de calentadores de tanque y de paso.</p>
+                <a href="tel:63026080" class="btn btn-primary">Ver más</a>
+            </div>
+            <div class="service-card" data-reveal>
+                <h3>Baños Taqueados</h3>
+                <span class="price">Urgencia 24/7</span>
+                <p>Atención inmediata para inodoros y drenajes obstruidos.</p>
+                <a href="tel:63026080" class="btn btn-primary">Llamar Ya</a>
+            </div>
+            </div>
+    </section>
 
-<div class="card"><h3>Detección de fugas</h3><p>Desde ₡45,000</p><button>Detectar ahora</button></div>
-<div class="card"><h3>Destape tuberías</h3><button>Destapar</button></div>
-<div class="card"><h3>Reparaciones</h3><button>Reparar</button></div>
-<div class="card"><h3>Inodoros</h3><button>Instalar</button></div>
-<div class="card"><h3>Baños taqueados</h3><button>Solucionar</button></div>
-<div class="card"><h3>Calentadores</h3><button>Revisar</button></div>
-<div class="card"><h3>Remodelación</h3><button>Cotizar</button></div>
-<div class="card"><h3>Grifería</h3><button>Instalar</button></div>
-<div class="card"><h3>Presión agua</h3><button>Solucionar</button></div>
-<div class="card"><h3>Mantenimiento</h3><button>Agendar</button></div>
+    <section class="testimonials" id="testimonios">
+        <div class="section-title">
+            <h2 style="color: white;">Lo que dicen nuestros clientes</h2>
+            <p style="color: var(--text-muted);">Más de 120 familias en la GAM confían en nosotros</p>
+        </div>
+        <div class="test-grid">
+            <div class="test-card">
+                <div class="stars">★★★★★</div>
+                <p>"Detectaron una fuga terrible que otros tres fontaneros no pudieron hallar. ¡Me salvaron!"</p>
+                <strong style="display:block; margin-top:15px;">- Carlos M. (Escazú)</strong>
+            </div>
+            <div class="test-card">
+                <div class="stars">★★★★★</div>
+                <p>"Puntuales y muy limpios para trabajar. Repararon el baño en tiempo récord."</p>
+                <strong style="display:block; margin-top:15px;">- Maria F. (Heredia)</strong>
+            </div>
+            <div class="test-card">
+                <div class="stars">★★★★★</div>
+                <p>"El servicio de emergencia en la madrugada fue excelente. Muy profesionales."</p>
+                <strong style="display:block; margin-top:15px;">- Juan R. (Alajuela)</strong>
+            </div>
+        </div>
+    </section>
 
-</div>
-</section>
+    <section class="section" id="contacto">
+        <div class="contact-container">
+            <div>
+                <h2>¿Problema urgente?</h2>
+                <p>Lo solucionamos hoy mismo. Estamos listos para salir hacia su ubicación.</p>
+                <div style="margin-top: 30px;">
+                    <p><strong>📍 Cobertura:</strong> San José, Alajuela, Heredia, Cartago.</p>
+                    <p><strong>📞 Teléfonos:</strong> 6302-6080 / 6163-1690</p>
+                    <p><strong>✉️ Email:</strong> cleanlivecostarica@gmail.com</p>
+                </div>
+            </div>
+            <form action="https://formspree.io/f/cleanlivecostarica@gmail.com" method="POST">
+                <input type="text" name="nombre" placeholder="Nombre completo" required>
+                <input type="tel" name="telefono" placeholder="Número de teléfono" required>
+                <input type="email" name="correo" placeholder="Correo electrónico">
+                <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarle?"></textarea>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
 
-<section id="testimonios" class="testimonials">
-<div class="testimonial">★★★★★ "Detectaron una fuga terrible. ¡Gracias don Alvaro!"</div>
-<div class="testimonial">★★★★★ "Servicio de alta calidad y amabilidad."</div>
-<div class="testimonial">★★★★★ "Responsables y rápidos."</div>
-</section>
+    <div class="floating-actions">
+        <a href="https://wa.me/50663026080" class="float-btn f-wa" onclick="logClick('WA_Float')">WA</a>
+        <a href="tel:63026080" class="float-btn f-call" onclick="logClick('Call_Float')">📞</a>
+    </div>
 
-<section id="contacto" class="contact">
-<form action="https://formspree.io/f/yourID" method="POST">
-<input type="text" placeholder="Nombre">
-<input type="tel" placeholder="Teléfono">
-<input type="email" placeholder="Correo">
-<textarea placeholder="Mensaje"></textarea>
-<button>Enviar Mensaje</button>
-</form>
-</section>
+    <div class="chat-widget" id="chatWindow">
+        <div class="chat-header">Asistente Virtual - Costa Rica Compañeros</div>
+        <div class="chat-body" id="chatBody">
+            <div style="background:#eee; padding:10px; border-radius:10px; margin-bottom:10px;">¡Hola! 👋 ¿Qué problema técnico tiene hoy? (fuga, destape, presión, calentador)</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Escriba aquí...">
+            <button onclick="handleChat()" style="background:var(--p2728); color:white; border:none; padding:5px 10px; border-radius:5px;">></button>
+        </div>
+    </div>
 
-<div class="chatbot">
-<h4>Asistente IA</h4>
-<p id="chat-response">Hola 👋 ¿Problemas de fontanería?</p>
-<input type="text" placeholder="Escribe..." onkeyup="chatbot(this.value)">
-</div>
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="logo" style="color:white; margin-bottom:20px;">CR COMPAÑEROS</div>
+                <p style="color:var(--text-muted);">Servicios profesionales de fontanería con tecnología de última generación en Costa Rica.</p>
+            </div>
+            <div>
+                <h4>Enlaces</h4>
+                <p><a href="#servicios" style="color:white; text-decoration:none;">Servicios</a></p>
+                <p><a href="#contacto" style="color:white; text-decoration:none;">Emergencias</a></p>
+            </div>
+            <div>
+                <h4>Zonas</h4>
+                <p>San José • Heredia • Alajuela • Cartago • Santa Ana • Escazú • Curridabat</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Costa Rica Compañeros. Todos los derechos reservados. | Plomería de Alta Tecnología.
+        </div>
+    </footer>
 
-<div class="float">
-<a href="https://wa.me/50663026080">💬</a>
-<a href="tel:63026080">📞</a>
-</div>
+    <script>
+        // --- Headlines Dinámicos ---
+        const headlines = [
+            "¿Sospechas de una fuga de agua?",
+            "¿Tubería taqueada?",
+            "Baño tapado urgente",
+            "Instalación de inodoros",
+            "Calentadores de agua",
+            "Remodelación de baño",
+            "Baja presión de agua",
+            "Destape de drenajes",
+            "Emergencias 24/7"
+        ];
+        let hIndex = 0;
+        setInterval(() => {
+            hIndex = (hIndex + 1) % headlines.length;
+            const el = document.getElementById('hero-headline');
+            el.style.opacity = 0;
+            setTimeout(() => {
+                el.innerText = headlines[hIndex];
+                el.style.opacity = 1;
+            }, 300);
+        }, 2500);
 
-<footer>
-<p>© 2026 Plomería Costa Rica | 24/7</p>
-</footer>
+        // --- Mensajes de Urgencia ---
+        const urgencyMsgs = ["Alta demanda hoy: 2 técnicos cerca", "Solo 1 cupo disponible en Heredia", "Atención inmediata en San José"];
+        setInterval(() => {
+            document.getElementById('urgency-msg').innerText = urgencyMsgs[Math.floor(Math.random() * urgencyMsgs.length)];
+        }, 4000);
 
-<script>
-// MENU
-function toggleMenu(){
-let m=document.getElementById("menu");
-m.style.display=m.style.display==="flex"?"none":"flex";
-}
+        // --- Reveal Animation ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
 
-// AUTO MENU
-setTimeout(toggleMenu,1000);
-setTimeout(toggleMenu,4000);
+        document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 
-// HEADLINES
-const headlines=[
-"¿Sospechas de fuga?",
-"¿Tubería taqueada?",
-"Instalación profesional",
-"Baño tapado urgente",
-"Calentadores de agua"
-];
+        // --- Chatbot Simulado ---
+        const chatWindow = document.getElementById('chatWindow');
+        setTimeout(() => { chatWindow.style.display = 'block'; }, 5000);
 
-let i=0;
-setInterval(()=>{
-i=(i+1)%headlines.length;
-document.getElementById("headline").innerText=headlines[i];
-},2500);
+        function handleChat() {
+            const input = document.getElementById('chatInput');
+            const body = document.getElementById('chatBody');
+            const val = input.value.toLowerCase();
+            if(!val) return;
 
-// CHATBOT
-function chatbot(text){
-let res="Podemos ayudarte con eso 👨‍🔧";
-if(text.includes("fuga")) res="Detectamos fugas sin romper.";
-if(text.includes("baño")) res="Vamos rápido a destaparlo.";
-document.getElementById("chat-response").innerText=res;
-}
-</script>
+            body.innerHTML += `<div style="text-align:right; margin-bottom:10px;"><b>Tú:</b> ${val}</div>`;
+            
+            let reply = "Entiendo. Un técnico puede ayudarle. ¿Desea que le llamemos ahora?";
+            if(val.includes("fuga")) reply = "Para fugas usamos geófonos digitales. ¿En qué zona se encuentra?";
+            if(val.includes("destape")) reply = "Hacemos destapes con sonda eléctrica sin romper. ¿Es un baño o cocina?";
+            if(val.includes("precio")) reply = "Los precios base inician en ₡45,000 pero dependen de la complejidad. ¿Le llamamos?";
 
+            setTimeout(() => {
+                body.innerHTML += `<div style="background:#eef2ff; padding:10px; border-radius:10px; margin-bottom:10px;"><b>Bot:</b> ${reply}</div>`;
+                body.scrollTop = body.scrollHeight;
+            }, 600);
+            input.value = "";
+        }
+
+        // --- Tracking & Logs ---
+        function logClick(action) {
+            console.log(`[CONVERSION_TRACKING]: ${action} clickeado a las ${new Date().toLocaleTimeString()}`);
+        }
+
+        // --- Auto Menú Animación ---
+        setTimeout(() => {
+            const nav = document.getElementById('mainNav');
+            // Simulación de interacción para llamar la atención del usuario
+            console.log("Menu Hint Animation Active");
+        }, 3000);
+    </script>
 </body>
 </html>
