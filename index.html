@@ -1,147 +1,271 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>German Ramirez Cortinas</title>
-    <meta name="description" content="Cortinas y persianas de alta calidad con tecnología de automatización para hogares y oficinas.">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;600&display=swap"></noscript>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Plomería Costa Rica | Emergencias 24/7</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--p3005:#0077c0;--p2728:#0047bb;--p368:#78be20;--p361:#43b02a;
+--white:#ffffff;--silver:#f5f5f7;--dark:#0a0f1a;
+--glass:rgba(255,255,255,0.6);
+--radius:20px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+
+body{background:var(--white);color:#111;overflow-x:hidden;}
+
+/* HEADER */
+header{
+display:flex;justify-content:space-between;align-items:center;
+padding:15px 30px;position:sticky;top:0;
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(12px);
+z-index:1000;
+}
+
+.logo{font-weight:700;color:var(--p2728);font-size:20px;}
+
+nav{display:flex;gap:20px;}
+nav a{text-decoration:none;color:#333;font-weight:500;}
+
+.menu-toggle{display:none;font-size:28px;cursor:pointer;}
+
+/* TICKER */
+.ticker{overflow:hidden;background:var(--p3005);color:white;padding:10px;}
+.ticker-track{display:flex;gap:40px;animation:scroll 25s linear infinite;}
+@keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+
+/* HERO */
+.hero{
+padding:100px 20px;text-align:center;
+background:linear-gradient(180deg,#fff,#f5f7fa);
+}
+
+.hero h1{
+font-size:clamp(2rem,5vw,3.5rem);
+color:var(--p2728);
+transition:.4s;
+}
+
+.hero p{margin-top:15px;color:#555;font-size:18px;}
+
+.btn{
+display:inline-block;margin:15px;padding:14px 28px;
+border-radius:40px;background:var(--p3005);
+color:white;text-decoration:none;
+transition:.3s;
+}
+
+.btn:hover{transform:scale(1.05);}
+
+/* SERVICES */
+.services{padding:80px 20px;background:var(--silver);}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
+
+.card:hover{transform:translateY(-10px);}
+
+.card h3{color:var(--p2728);margin-bottom:10px;}
+
+.card button{
+margin-top:10px;padding:10px 20px;border:none;
+border-radius:20px;background:var(--p361);
+color:white;cursor:pointer;
+}
+
+/* TESTIMONIOS */
+.testimonials{padding:80px 20px;}
+.testimonial{
+background:white;padding:20px;margin-bottom:20px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+/* CONTACT */
+.contact{padding:80px 20px;background:var(--silver);}
+input,textarea{
+width:100%;padding:12px;margin:10px 0;
+border-radius:10px;border:1px solid #ccc;
+}
+
+button{
+background:var(--p361);color:white;
+padding:12px;border:none;border-radius:10px;
+cursor:pointer;
+}
+
+/* CHATBOT */
+.chatbot{
+position:fixed;bottom:20px;left:20px;
+background:white;border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+width:280px;padding:15px;
+}
+
+.chatbot h4{margin-bottom:10px;}
+.chatbot p{font-size:14px;color:#444;}
+
+.chatbot input{
+margin-top:10px;
+}
+
+/* FLOAT */
+.float{
+position:fixed;bottom:20px;right:20px;
+display:flex;flex-direction:column;gap:10px;
+}
+
+.float a{
+background:var(--p368);
+color:white;padding:14px;border-radius:50%;
+text-decoration:none;
+}
+
+/* FOOTER */
+footer{
+background:var(--dark);
+color:white;padding:40px 20px;text-align:center;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+nav{display:none;flex-direction:column;background:white;position:absolute;top:60px;right:0;padding:20px;}
+.menu-toggle{display:block;}
+}
+</style>
 </head>
+
 <body>
 
-  <nav class="main-nav">
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  
-  <div class="nav-links" id="nav-links">
-    <a href="#">NUEVO</a>
-    <a href="#">TOLDO ZIPRO</a>
-    <a href="#">PERSIANAS</a>
-    <a href="#">CORTINAS</a>
-    <a href="#">EXTERIORES</a>
-    <a href="#">PÉRGOLAS ZEN</a>
-    <a href="#">TOLDOS</a>
-    <a href="#">ALFOMBRAS</a>
-    <a href="#">CONTACTO</a>
-  </div>
+<header>
+<div class="logo">Costa Rica Compañeros</div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<nav id="menu">
+<a href="#servicios">Servicios</a>
+<a href="#testimonios">Testimonios</a>
+<a href="#contacto">Contacto</a>
+<a href="tel:63026080">63026080</a>
 </nav>
+</header>
 
-    <a href="https://wa.me/50663473333" class="floating-btn floating-whatsapp" aria-label="Escríbenos por WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="tel:+50663473333" class="floating-btn floating-call" aria-label="Llámanos por teléfono"><i class="fas fa-phone"></i></a>
+<div class="ticker">
+<div class="ticker-track">
+<span>⚡ Emergencias 24/7</span>
+<span>🔧 +20 Años</span>
+<span>📍 San José · Heredia · Alajuela · Cartago</span>
+<span>💧 Fugas</span>
+<span>🚿 Destapes</span>
+</div>
+</div>
 
-    <header>
-        
-        <video autoplay muted loop>
-    <source src="Cortinas_de_Lujo_Modernidad_y_Sostenibilidad.mp4" type="video/mp4">
-  </video>
-  
-        <div class="particles" id="particles"></div>
-        <div class="content-wrapper">
-            <div class="logo">German Ramirez <span>Cortinas</span></div>
-            <nav class="main-nav">
-                <a href="#productos">Productos</a>
-                <a href="#automatizacion">Automatización</a>
-                <a href="#contacto">Contacto</a>
-                </nav>
-        </div>
-    </header>
+<section class="hero">
+<h1 id="headline">¿Sospechas de una fuga de agua?</h1>
+<p id="desc">Solucionamos hoy mismo sin romper de más.</p>
+<a class="btn" href="#">Solicitar servicio</a>
+<a class="btn" href="https://wa.me/50663026080">WhatsApp</a>
+</section>
 
-    <main>
-        <section class="sala-container" id="sala">
-            <div class="sala-bg" id="sala-bg"></div>
-            <div class="cortina" id="cortina"></div>
-        </section>
+<section id="servicios" class="services">
+<div class="grid">
 
-        <section class="products-section" id="productos">
-            <h2 class="section-title">Nuestros Productos</h2>
-            <div class="product-grid">
-                <article class="product-item">
-                    <img src="cortinas_costa_rica.jpg" alt="Cortinas_costa_rica" loading="lazy">
-                    <div class="product-info">
-                        <h3>Cortinas</h3>
-                        <p>Los textiles de alta calidad realzan la belleza de cualquier espacio, controlando la luz y ofreciendo elegancia.</p>
-                        <a href="#" class="cta-button">Ver más</a>
-                    </div>
-                </article>
-                <article class="product-item">
-                    <img src="cortinas_blackout.png" alt="Cortinas_Blackout" loading="lazy">
-                    <div class="product-info">
-                        <h3>Blackout</h3>
-                        <p>Total control de la luz y máxima privacidad, ideal para dormitorios y salas de proyección.</p>
-                        <a href="#" class="cta-button">Ver texturas</a>
-                    </div>
-                </article>
-                <article class="product-item">
-                    <img src="cortinas_persianas.png" alt="Persianas" loading="lazy">
-                    <div class="product-info">
-                        <h3>Persianas</h3>
-                        <p>La opción perfecta para un control preciso de la luz. Estilo, funcionalidad y modernidad.</p>
-                        <a href="#" class="cta-button">Ver colección</a>
-                    </div>
-                </article>
-            </div>
-        </section>
+<div class="card"><h3>Detección de fugas</h3><p>Desde ₡45,000</p><button>Detectar ahora</button></div>
+<div class="card"><h3>Destape tuberías</h3><button>Destapar</button></div>
+<div class="card"><h3>Reparaciones</h3><button>Reparar</button></div>
+<div class="card"><h3>Inodoros</h3><button>Instalar</button></div>
+<div class="card"><h3>Baños taqueados</h3><button>Solucionar</button></div>
+<div class="card"><h3>Calentadores</h3><button>Revisar</button></div>
+<div class="card"><h3>Remodelación</h3><button>Cotizar</button></div>
+<div class="card"><h3>Grifería</h3><button>Instalar</button></div>
+<div class="card"><h3>Presión agua</h3><button>Solucionar</button></div>
+<div class="card"><h3>Mantenimiento</h3><button>Agendar</button></div>
 
-        <section class="tech-section" id="automatizacion">
-            <h2>AUTOMATIZACIÓN</h2>
-            <p>Transforma tu hogar con tecnología de punta. Controla tus cortinas, persianas y toldos con un solo clic o con tu voz.</p>
-            <div class="tech-grid">
-                <div class="tech-item"><i class="fas fa-mobile-alt"></i><h3>Control por App</h3><p>Maneja todo desde tu celular, estés donde estés.</p></div>
-                <div class="tech-item"><i class="fas fa-bolt"></i><h3>Integración Smart</h3><p>Compatibles con Google Home y Alexa para control por voz.</p></div>
-                <div class="tech-item"><i class="fas fa-tv"></i><h3>Control Remoto</h3><p>La comodidad de un control dedicado para un manejo fácil.</p></div>
-            </div>
-        </section>
-        
-        <section class="contact-section" id="contacto">
-            <h2>Agenda tu visita</h2>
-            <p>Recibe una asesoría personalizada y gratuita en tu hogar u oficina para encontrar la solución perfecta.</p>
-            <a href="#" class="cta-button primary-cta">¡Solicita tu visita!</a>
-        </section>
-    </main>
+</div>
+</section>
 
-    <footer>
-        <div class="footer-col">
-            <h4>German Ramirez Cortinas</h4>
-            <p>Liderando en cortinas y automatización con diseño y tecnología de vanguardia.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Productos</h4>
-            <ul>
-                <li><a href="#">Cortinas</a></li>
-                <li><a href="#">Persianas</a></li>
-                <li><a href="#">Blackout</a></li>
-                <li><a href="#">Toldos y Pérgolas</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Contacto</h4>
-            <p><i class="fas fa-map-marker-alt"></i> San José, Costa Rica</p>
-            <p><i class="fas fa-phone"></i> +506 XXXXXXXX</p>
-            <p><i class="fas fa-envelope"></i> info@germinramirez.com</p>
-        </div>
-        <div class="footer-col socials-col">
-            <h4>Nuestras Marcas</h4>
-            <div class="socials">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2025 German Ramirez Cortinas. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+<section id="testimonios" class="testimonials">
+<div class="testimonial">★★★★★ "Detectaron una fuga terrible. ¡Gracias don Alvaro!"</div>
+<div class="testimonial">★★★★★ "Servicio de alta calidad y amabilidad."</div>
+<div class="testimonial">★★★★★ "Responsables y rápidos."</div>
+</section>
 
-    <audio id="sound" src="cortina-bajar.mp3" preload="auto"></audio>
+<section id="contacto" class="contact">
+<form action="https://formspree.io/f/yourID" method="POST">
+<input type="text" placeholder="Nombre">
+<input type="tel" placeholder="Teléfono">
+<input type="email" placeholder="Correo">
+<textarea placeholder="Mensaje"></textarea>
+<button>Enviar Mensaje</button>
+</form>
+</section>
 
-    <script src="scripts.js"></script>
+<div class="chatbot">
+<h4>Asistente IA</h4>
+<p id="chat-response">Hola 👋 ¿Problemas de fontanería?</p>
+<input type="text" placeholder="Escribe..." onkeyup="chatbot(this.value)">
+</div>
+
+<div class="float">
+<a href="https://wa.me/50663026080">💬</a>
+<a href="tel:63026080">📞</a>
+</div>
+
+<footer>
+<p>© 2026 Plomería Costa Rica | 24/7</p>
+</footer>
+
+<script>
+// MENU
+function toggleMenu(){
+let m=document.getElementById("menu");
+m.style.display=m.style.display==="flex"?"none":"flex";
+}
+
+// AUTO MENU
+setTimeout(toggleMenu,1000);
+setTimeout(toggleMenu,4000);
+
+// HEADLINES
+const headlines=[
+"¿Sospechas de fuga?",
+"¿Tubería taqueada?",
+"Instalación profesional",
+"Baño tapado urgente",
+"Calentadores de agua"
+];
+
+let i=0;
+setInterval(()=>{
+i=(i+1)%headlines.length;
+document.getElementById("headline").innerText=headlines[i];
+},2500);
+
+// CHATBOT
+function chatbot(text){
+let res="Podemos ayudarte con eso 👨‍🔧";
+if(text.includes("fuga")) res="Detectamos fugas sin romper.";
+if(text.includes("baño")) res="Vamos rápido a destaparlo.";
+document.getElementById("chat-response").innerText=res;
+}
+</script>
+
 </body>
 </html>
